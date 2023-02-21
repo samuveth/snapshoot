@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       env: "",
+      subDomain: "",
       defaultNetwork: "",
       hubUrl: "",
     },

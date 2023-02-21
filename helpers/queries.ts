@@ -118,58 +118,6 @@ export const PROPOSALS_QUERY = gql`
   }
 `;
 
-export const NOTIFICATION_PROPOSALS_QUERY = gql`
-  query Proposals(
-    $first: Int!
-    $state: String!
-    $space_in: [String]
-    $start_gte: Int
-  ) {
-    proposals(
-      first: $first
-      where: { state: $state, space_in: $space_in, start_gte: $start_gte }
-    ) {
-      id
-      title
-      start
-      end
-      state
-      space {
-        id
-        name
-        avatar
-      }
-    }
-  }
-`;
-
-export const FOLLOWS_QUERY = gql`
-  query Follows($space_in: [String], $follower_in: [String]) {
-    follows(
-      where: { space_in: $space_in, follower_in: $follower_in }
-      first: 500
-    ) {
-      id
-      follower
-      space {
-        id
-      }
-    }
-  }
-`;
-
-export const SUBSCRIPTIONS_QUERY = gql`
-  query Subscriptions($space: String, $address: String) {
-    subscriptions(where: { space: $space, address: $address }) {
-      id
-      address
-      space {
-        id
-      }
-    }
-  }
-`;
-
 export const ALIASES_QUERY = gql`
   query Aliases($address: String!, $alias: String!) {
     aliases(where: { address: $address, alias: $alias }) {

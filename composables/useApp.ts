@@ -8,18 +8,10 @@ export function useApp() {
   const runtimeConfig = useRuntimeConfig();
 
   function getSpaceId() {
-    const ENV = runtimeConfig.public.env;
-    let id = "testsnap";
+    const SUBDOMAIN = runtimeConfig.public.subDomain;
 
-    if (
-      ENV !== "develop" &&
-      window.location.hostname.split(".")[1] === "snapshoot"
-    ) {
-      id = window.location.hostname.split(".")[0];
-    }
-
-    spaceId.value = id;
-    spaceEns.value = `${id}.eth`;
+    spaceId.value = SUBDOMAIN;
+    spaceEns.value = `${SUBDOMAIN}.eth`;
   }
 
   function connectWallet() {
@@ -40,7 +32,6 @@ export function useApp() {
   }
 
   async function init() {
-    getSpaceId();
     connectWallet();
   }
 
@@ -48,5 +39,6 @@ export function useApp() {
     init,
     spaceId,
     spaceEns,
+    getSpaceId,
   };
 }

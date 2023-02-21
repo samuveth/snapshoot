@@ -14,9 +14,9 @@ const space = computed(() => data.value?.spaces[0]);
 </script>
 
 <template>
-  <Head v-if="space">
+  <Head>
     <Title>testing CCC</Title>
-    <Meta name="description" :content="space.about" />
+    <Meta name="description" :content="space?.about" />
   </Head>
   <BaseContainer>{{ space }}</BaseContainer>
 </template>

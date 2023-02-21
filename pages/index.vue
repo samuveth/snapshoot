@@ -12,11 +12,11 @@ const { data } = useAsyncQuery<{
 
 const space = computed(() => data.value?.spaces[0]);
 
-useServerSeoMeta({
-  title: () => `${space.value?.name}`,
-  description: () => space.value?.about,
-  ogTitle: () => `${space.value?.name}`,
-  ogDescription: () => space.value?.about,
+useSeoMeta({
+  title: () => space.value?.name ?? "",
+  description: () => space.value?.about ?? "",
+  ogTitle: () => space.value?.name ?? "",
+  ogDescription: () => space.value?.about ?? "",
 });
 </script>
 

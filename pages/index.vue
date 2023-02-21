@@ -13,9 +13,9 @@ const { result } = useQuery<{
 const space = computed(() => result.value?.spaces[0]);
 
 useSeoMeta({
-  title: () => space.value?.name ?? "",
+  title: "testtitle",
   description: () => space.value?.about ?? "",
-  ogTitle: () => space.value?.name ?? "",
+  ogTitle: "testtitleOg",
   ogDescription: () => space.value?.about ?? "",
 });
 </script>

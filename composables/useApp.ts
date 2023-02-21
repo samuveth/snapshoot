@@ -1,19 +1,22 @@
-import { ref, computed } from "vue";
-import connectors from "@/helpers/connectors.json";
 import { getInjectedWallet } from "@/helpers/lock/utils";
+
+const spaceId = ref("");
+const spaceEns = ref("");
 
 export function useApp() {
   const { login, getConnector } = useWeb3();
   const runtimeConfig = useRuntimeConfig();
 
-  const ENV = runtimeConfig.env;
-  let spaceId = "";
+  function getSpaceId() {
+    const ENV = runtimeConfig.public.env;
+    let id = "testsnap";
 
-  if (ENV === "develop") {
-    spaceId = "testsnap";
-  } else {
-    if (window.location.hostname.includes("snapshoot"))
-      spaceId = window.location.hostname.split(".")[0];
+    if (ENV !== "develop" && window.location.hostname.includes("snapshoot")) {
+      id = window.location.hostname.split(".")[0];
+    }
+
+    spaceId.value = id;
+    spaceEns.value = `${id}.eth`;
   }
 
   function connectWallet() {
@@ -34,11 +37,13 @@ export function useApp() {
   }
 
   async function init() {
+    getSpaceId();
     connectWallet();
   }
 
   return {
     init,
     spaceId,
+    spaceEns,
   };
 }

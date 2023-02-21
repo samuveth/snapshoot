@@ -26,7 +26,7 @@ export function useWeb3() {
   const runtimeConfig = useRuntimeConfig();
 
   const defaultNetwork: string =
-    runtimeConfig.defaultNetwork || Object.keys(networks)[0];
+    runtimeConfig.public.defaultNetwork || Object.keys(networks)[0];
 
   state.network = networks[defaultNetwork as keyof typeof networks];
 

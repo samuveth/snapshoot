@@ -5,20 +5,29 @@ import Components from "unplugin-vue-components/vite";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   runtimeConfig: {
-    env: "",
-    defaultNetwork: "",
+    public: {
+      env: "",
+      defaultNetwork: "",
+      hubUrl: "",
+    },
   },
   app: {
-    head: {
-      title: "Snapshot",
-    },
+    head: {},
   },
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/i18n",
     "nuxt-headlessui",
+    "@nuxtjs/apollo",
     ["unplugin-icons/nuxt", {}],
   ],
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: "https://hub.snapshot.org/graphql",
+      },
+    },
+  },
   i18n: {
     strategy: "no_prefix",
     locales: [

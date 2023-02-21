@@ -14,11 +14,6 @@ export default defineNuxtConfig({
   app: {
     head: {},
   },
-  routeRules: {
-    "/**": {
-      swr: true,
-    },
-  },
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/i18n",

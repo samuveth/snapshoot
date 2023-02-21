@@ -11,12 +11,15 @@ const { data } = useAsyncQuery<{
 });
 
 const space = computed(() => data.value?.spaces[0]);
+
+useServerSeoMeta({
+  title: () => `${space.value?.name}`,
+  description: () => space.value?.about,
+  ogTitle: () => `${space.value?.name}`,
+  ogDescription: () => space.value?.about,
+});
 </script>
 
 <template>
-  <Head>
-    <Title>testing CCC</Title>
-    <Meta name="description" :content="space?.about" />
-  </Head>
   <BaseContainer>{{ space }}</BaseContainer>
 </template>

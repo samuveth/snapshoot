@@ -3,17 +3,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "var(--primary-color)",
-        secondary: "var(--secondary-color)",
-        success: "var(--success-color)",
-        danger: "var(--danger-color)",
-        warning: "var(--warning-color)",
-        info: "var(--info-color)",
-        light: "var(--light-color)",
-        dark: "var(--dark-color)",
-        "gray-light": "var(--gray-light)",
-        "gray-medium": "var(--gray-medium)",
-        "gray-dark": "var(--gray-dark)",
+        primary: "rgb(var(--primary-color))",
+        secondary: "rgb(var(--secondary-color))",
+        success: "rgb(var(--success-color))",
+        danger: "rgb(var(--danger-color))",
+        warning: "rgb(var(--warning-color))",
+        info: "rgb(var(--info-color))",
+        light: "rgb(var(--light-color))",
+        dark: "rgb(var(--dark-color))",
+        "gray-light": "rgb(var(--gray-light))",
+        "gray-medium": "rgb(var(--gray-medium))",
+        "gray-dark": "rgb(var(--gray-dark))",
       },
 
       borderRadius: {

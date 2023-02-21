@@ -9,4 +9,7 @@ onMounted(() => {
 <template>
   <TheNavbar />
   <NuxtPage />
+  <Teleport to="body">
+    <ModalConnect />
+  </Teleport>
 </template>

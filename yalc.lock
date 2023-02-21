@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "vue-web3-lock": {
+      "version": "0.0.8",
+      "signature": "96cc73bdf16cee7b329d77fc023af4ee",
+      "file": true
+    }
+  }
+}

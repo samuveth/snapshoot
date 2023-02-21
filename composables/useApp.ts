@@ -1,11 +1,9 @@
 import { ref, computed } from "vue";
-import { getInstance } from "@snapshot-labs/lock/plugins/vue3";
-import { getInjected } from "@snapshot-labs/lock/src/utils";
-
-const isReady = ref(false);
+import connectors from "@/helpers/connectors.json";
+import { getInjectedWallet } from "@/helpers/lock/utils";
 
 export function useApp() {
-  const { login } = useWeb3();
+  const { login, getConnector } = useWeb3();
   const runtimeConfig = useRuntimeConfig();
 
   const ENV = runtimeConfig.env;
@@ -19,32 +17,28 @@ export function useApp() {
   }
 
   function connectWallet() {
-    const auth = getInstance();
-
     // Auto connect if previous session was connected
     if (window?.parent === window)
-      auth.getConnector().then((connector: any) => {
+      getConnector().then((connector: any) => {
         if (connector) return login(connector);
       });
 
     // Auto connect with gnosis-connector when gnosis safe is detected
-    login("gnosis");
+    // login("gnosis");
 
-    const injected = computed(() => getInjected());
+    const injected = getInjectedWallet();
     // edge case if MM and CBW are both installed
-    if (injected.value?.id === "metamask") return;
+    if (injected?.id === "metamask") return;
     // Auto connect when coinbase wallet is detected
-    if (injected.value?.id === "coinbase") return login("injected");
+    // if (injected?.id === "coinbase") return login("injected");
   }
 
   async function init() {
-    // getSpace(spaceId);
-    isReady.value = true;
     connectWallet();
   }
 
   return {
-    isReady,
     init,
+    spaceId,
   };
 }

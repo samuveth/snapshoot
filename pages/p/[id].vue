@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>test4</div>
+  <BaseContainer>
+    <div>test4</div>
+  </BaseContainer>
 </template>

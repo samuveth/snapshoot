@@ -1,0 +1,20 @@
+{
+  "injected": {
+    "id": "injected",
+    "name": "MetaMask"
+  },
+  "walletconnect": {
+    "id": "walletconnect",
+    "name": "WalletConnect",
+    "network": "1",
+    "options": {
+      "rpc": {
+        "1": "https://rpc.snapshot.org/1",
+        "4": "https://rpc.snapshot.org/4",
+        "42": "https://rpc.snapshot.org/42",
+        "10": "https://rpc.snapshot.org/10"
+      }
+    },
+    "icon": "ipfs://QmZRVqHpgRemw13aoovP2EaQdVtjzXRaQGQZsCLXWaNn9x"
+  }
+}

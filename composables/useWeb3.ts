@@ -1,8 +1,8 @@
 import { computed, reactive } from "vue";
 import { Web3Provider } from "@ethersproject/providers";
-import { getInstance } from "@snapshot-labs/lock/plugins/vue3";
 import networks from "@snapshot-labs/snapshot.js/src/networks.json";
 import { formatUnits } from "@ethersproject/units";
+import connectors from "@/helpers/connectors.json";
 
 const state = reactive<{
   account: string;
@@ -17,7 +17,11 @@ const state = reactive<{
 });
 
 export function useWeb3() {
-  let auth;
+  let web3: any;
+
+  const { connect, disconnect, provider, getConnector } = useLock({
+    connectors,
+  });
 
   const runtimeConfig = useRuntimeConfig();
 
@@ -27,59 +31,50 @@ export function useWeb3() {
   state.network = networks[defaultNetwork as keyof typeof networks];
 
   async function login(connector = "injected") {
-    auth = getInstance();
     state.authLoading = true;
-    await auth.login(connector);
-    if (auth.provider.value) {
-      auth.web3 = new Web3Provider(auth.provider.value, "any");
+    await connect(connector);
+    if (provider.value) {
+      web3 = new Web3Provider(provider.value, "any");
       await loadProvider();
     }
     state.authLoading = false;
   }
 
   function logout() {
-    auth = getInstance();
-    auth.logout();
+    disconnect();
     state.account = "";
   }
 
   async function loadProvider() {
-    auth = getInstance();
     try {
-      if (
-        auth.provider.value.removeAllListeners &&
-        !auth.provider.value.isTorus
-      )
-        auth.provider.value.removeAllListeners();
-      if (auth.provider.value.on) {
+      if (provider.value?.removeAllListeners)
+        provider.value.removeAllListeners();
+      if (provider.value?.on) {
         try {
-          auth.provider.value.on("chainChanged", async (chainId: string) => {
+          provider.value.on("chainChanged", async (chainId: string) => {
             handleChainChanged(formatUnits(chainId, 0));
           });
-          auth.provider.value.on(
-            "accountsChanged",
-            async (accounts: string[]) => {
-              if (accounts.length !== 0) {
-                await login();
-              }
+          provider.value.on("accountsChanged", async (accounts: string[]) => {
+            if (accounts.length !== 0) {
+              await login();
             }
-          );
+          });
         } catch (e) {
           console.log(`failed to subscribe to events for provider: ${e}`);
         }
       }
-      console.log("Provider", auth.provider.value);
+      console.log("Provider", provider.value);
       let network, accounts;
       try {
-        const connector = auth.provider.value?.connectorName;
+        const connector = provider.value?.connectorName;
         if (connector === "gnosis") {
-          const { chainId: safeChainId, safeAddress } = auth.web3.provider.safe;
+          const { chainId: safeChainId, safeAddress } = web3.provider.safe;
           network = { chainId: safeChainId };
           accounts = [safeAddress];
         } else {
           [network, accounts] = await Promise.all([
-            auth.web3.getNetwork(),
-            auth.web3.listAccounts(),
+            web3.getNetwork(),
+            web3.listAccounts(),
           ]);
         }
       } catch (e) {
@@ -91,7 +86,7 @@ export function useWeb3() {
       const acc = accounts.length > 0 ? accounts[0] : null;
 
       state.account = acc;
-      state.walletConnectType = auth.provider.value?.wc?.peerMeta?.name || null;
+      state.walletConnectType = provider.value?.wc?.peerMeta?.name || null;
     } catch (e) {
       state.account = "";
       return Promise.reject(e);
@@ -114,7 +109,7 @@ export function useWeb3() {
     logout,
     loadProvider,
     handleChainChanged,
+    getConnector,
     web3: computed(() => state),
-    web3Account: computed(() => state.account),
   };
 }

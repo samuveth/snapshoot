@@ -1,5 +1,5 @@
 <script setup>
-const { init } = useApp();
+const { init, spaceEns } = useApp();
 
 onMounted(() => {
   init();
@@ -8,7 +8,7 @@ onMounted(() => {
 
 <template>
   <TheNavbar />
-  <NuxtPage />
+  <NuxtPage v-if="spaceEns" />
   <Teleport to="body">
     <ModalConnect />
   </Teleport>

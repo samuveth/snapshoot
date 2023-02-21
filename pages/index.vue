@@ -4,7 +4,7 @@ import { Space } from "@/helpers/interfaces";
 
 const { spaceEns } = useApp();
 
-const { data } = useAsyncQuery<{
+const { data } = await useAsyncQuery<{
   spaces: Space[];
 }>(SPACES_QUERY, {
   id_in: ["testsnap.eth"],

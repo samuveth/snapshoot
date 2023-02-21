@@ -7,7 +7,7 @@ const { spaceEns } = useApp();
 const { data } = await useAsyncQuery<{
   spaces: Space[];
 }>(SPACES_QUERY, {
-  id_in: ["testsnap.eth"],
+  id_in: [spaceEns.value],
 });
 
 const space = computed(() => data.value?.spaces[0]);

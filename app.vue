@@ -8,7 +8,7 @@ onMounted(() => {
 
 <template>
   <TheNavbar />
-  <NuxtPage />
+  <NuxtPage v-if="spaceEns" />
   <Teleport to="body">
     <ModalConnect />
   </Teleport>

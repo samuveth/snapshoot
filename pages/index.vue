@@ -15,7 +15,7 @@ const space = computed(() => data.value?.spaces[0]);
 
 <template>
   <Head v-if="space">
-    <Title>{{ space.name }}</Title>
+    <Title>testing CCC</Title>
     <Meta name="description" :content="space.about" />
   </Head>
   <BaseContainer>{{ space }}</BaseContainer>

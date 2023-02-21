@@ -4,13 +4,13 @@ import { Space } from "@/helpers/interfaces";
 
 const { spaceEns } = useApp();
 
-const { data } = useAsyncQuery<{
+const { result } = useQuery<{
   spaces: Space[];
 }>(SPACES_QUERY, {
   id_in: ["testsnap.eth"],
 });
 
-const space = computed(() => data.value?.spaces[0]);
+const space = computed(() => result.value?.spaces[0]);
 
 useSeoMeta({
   title: () => space.value?.name ?? "",

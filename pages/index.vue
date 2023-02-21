@@ -6,9 +6,13 @@ const { spaceEns } = useApp();
 
 const { result } = useQuery<{
   spaces: Space[];
-}>(SPACES_QUERY, {
-  id_in: [spaceEns.value],
-});
+}>(
+  SPACES_QUERY,
+  {
+    id_in: ["testsnap.eth"],
+  },
+  { prefetch: true }
+);
 
 const space = computed(() => result.value?.spaces[0]);
 

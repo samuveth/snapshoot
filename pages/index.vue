@@ -4,22 +4,24 @@ import { Space } from "@/helpers/interfaces";
 
 const { spaceEns } = useApp();
 
-const { result } = useQuery<{
+const { data } = useAsyncQuery<{
   spaces: Space[];
 }>(SPACES_QUERY, {
   id_in: ["testsnap.eth"],
 });
 
-const space = computed(() => result.value?.spaces[0]);
+const space = computed(() => data.value?.spaces[0]);
 
 useSeoMeta({
-  title: "testtitle",
+  title: () => space.value?.name ?? "",
   description: () => space.value?.about ?? "",
-  ogTitle: "testtitleOg",
+  ogTitle: () => space.value?.name ?? "",
   ogDescription: () => space.value?.about ?? "",
 });
 </script>
 
 <template>
-  <BaseContainer>{{ space }}</BaseContainer>
+  <div>
+    <BaseContainer>{{ space }}</BaseContainer>
+  </div>
 </template>

@@ -9,8 +9,14 @@ const { data } = useAsyncQuery<{
 }>(SPACES_QUERY, {
   id_in: [spaceEns.value],
 });
+
+const space = computed(() => data.value?.spaces[0]);
 </script>
 
 <template>
-  <BaseContainer>{{ data?.spaces[0] }}</BaseContainer>
+  <Head v-if="space">
+    <Title>{{ space.name }}</Title>
+    <Meta name="description" :content="space.about" />
+  </Head>
+  <BaseContainer>{{ space }}</BaseContainer>
 </template>

@@ -22,6 +22,7 @@ useSeoMeta({
 
 <template>
   <BaseContainer class="py-8">
+    <HomeStats v-if="space" :space="space" />
     <HomeProposals />
   </BaseContainer>
 </template>

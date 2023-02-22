@@ -34,7 +34,7 @@ const columns = ["Proposal", "Author", "Votes"];
         class="rounded-default border border-gray-light bg-white py-10 px-6 lg:px-8"
       >
         <div class="justify-between sm:flex sm:items-center">
-          <h2 class="text-2xl font-semibold">Proposals</h2>
+          <h3 class="text-2xl font-semibold">Proposals</h3>
           <BaseButton variant="primary" size="lg" class="mt-6 sm:mt-0">
             Create Proposal
           </BaseButton>

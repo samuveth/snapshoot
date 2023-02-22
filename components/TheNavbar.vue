@@ -10,7 +10,7 @@ const { isConnectOpen } = useModal();
   <div class="bg-gray-light">
     <BaseContainer>
       <div class="flex justify-between py-3">
-        <div class="text-xl font-semibold">{{ spaceId }}</div>
+        <NuxtLink to="/" class="text-xl font-semibold">{{ spaceId }}</NuxtLink>
         <BaseButton @click="isConnectOpen = true">
           {{ web3.account ? shorten(web3.account) : $t("connectWallet") }}
         </BaseButton>

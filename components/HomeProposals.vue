@@ -44,7 +44,7 @@ watch(proposals, () => {
           </thead>
           <tbody>
             <tr
-              class="last:border-b- border-b border-gray-light first:border-t"
+              class="last:border-b- cursor-pointer border-b border-gray-light first:border-t"
               v-for="proposal in proposals"
               @click="$router.push(`/p/${proposal.id}`)"
             >

@@ -9,6 +9,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    IHeroiconsClock: typeof import('~icons/heroicons/clock')['default']
+    IHeroiconsClockSolid: typeof import('~icons/heroicons/clock-solid')['default']
+    IHeroiconsWatch: typeof import('~icons/heroicons/watch')['default']
     IHeroiconsXMark: typeof import('~icons/heroicons/x-mark')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

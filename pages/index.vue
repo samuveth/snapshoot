@@ -21,7 +21,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
-    <BaseContainer>{{ space }}</BaseContainer>
-  </div>
+  <BaseContainer>
+    <HomeProposals />
+  </BaseContainer>
 </template>

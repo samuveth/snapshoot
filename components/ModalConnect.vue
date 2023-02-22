@@ -9,8 +9,8 @@ const { login } = useWeb3();
     @close="isConnectOpen = false"
     :title="$t('connectWallet')"
   >
-    <BaseButton @click="login">
-      {{ login }}
-    </BaseButton>
+    <template #body>
+      <BaseButton @click="login"> Wallet </BaseButton>
+    </template>
   </BaseModal>
 </template>

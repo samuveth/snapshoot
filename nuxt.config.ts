@@ -44,6 +44,15 @@ export default defineNuxtConfig({
       legacy: false,
       locale: "en",
       fallbackLocale: "en",
+      datetimeFormats: {
+        en: {
+          short: {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          },
+        },
+      },
     },
   },
   typescript: {

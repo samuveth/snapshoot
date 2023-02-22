@@ -13,7 +13,7 @@ const { result, loading } = useQuery<{
   proposals: Proposal[];
 }>(PROPOSALS_QUERY, {
   space_in: [spaceEns.value],
-  first: 10,
+  first: 20,
   skip: 0,
   state: "all",
 });
@@ -26,11 +26,11 @@ watch(proposals, () => {
 </script>
 
 <template>
-  <div class="mt-6">
+  <div>
     <div v-if="loading">Loading...</div>
     <template v-else>
       <!-- Create a table with, Proposal, Creator, Votes -->
-      <div class="rounded-default border border-gray-light">
+      <div class="rounded-default border border-gray-light bg-white">
         <!-- <h2 class="border-b border-gray-light px-4 py-4 text-2xl font-bold">
           Proposals
         </h2> -->

@@ -21,7 +21,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <BaseContainer>
+  <BaseContainer class="py-8">
     <HomeProposals />
   </BaseContainer>
 </template>

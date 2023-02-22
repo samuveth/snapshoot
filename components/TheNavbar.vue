@@ -7,7 +7,7 @@ const { isConnectOpen } = useModal();
 </script>
 
 <template>
-  <div class="bg-gray-light">
+  <div class="sticky top-0 w-full border-b border-gray-medium bg-light">
     <BaseContainer>
       <div class="flex justify-between py-3">
         <NuxtLink to="/" class="text-xl font-semibold">{{ spaceId }}</NuxtLink>

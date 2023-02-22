@@ -8,7 +8,7 @@ export function useApp() {
   const runtimeConfig = useRuntimeConfig();
 
   function getSpaceId() {
-    const SUBDOMAIN = runtimeConfig.public.subDomain || "testsnap";
+    const SUBDOMAIN = runtimeConfig.public.subDomain || "aavegotchi";
 
     spaceId.value = SUBDOMAIN;
     spaceEns.value = `${SUBDOMAIN}.eth`;

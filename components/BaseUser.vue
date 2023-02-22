@@ -6,6 +6,7 @@ const props = defineProps<{
   address: string;
   profile?: Profile;
   hideAvatar?: boolean;
+  hideUsername?: boolean;
   widthClass?: string;
 }>();
 
@@ -16,7 +17,7 @@ const { username } = useUsername(address, profile);
 <template>
   <div :class="[widthClass, 'flex flex-nowrap items-center space-x-1']">
     <AvatarUser v-if="!hideAvatar" :address="address" size="18" />
-    <span class="text-skin-link w-full truncate">
+    <span v-if="!hideUsername" class="text-skin-link w-full truncate">
       {{ username }}
     </span>
   </div>

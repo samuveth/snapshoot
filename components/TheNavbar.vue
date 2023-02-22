@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { shorten } from "~~/helpers/utils";
+
 const { spaceId } = useApp();
 const { web3 } = useWeb3();
 const { isConnectOpen } = useModal();
@@ -8,9 +10,9 @@ const { isConnectOpen } = useModal();
   <div class="bg-gray-light">
     <BaseContainer>
       <div class="flex justify-between py-3">
-        <div class="font-semibold text-xl">{{ spaceId }}</div>
+        <div class="text-xl font-semibold">{{ spaceId }}</div>
         <BaseButton @click="isConnectOpen = true">
-          {{ web3.account ? web3.account : $t("connectWallet") }}
+          {{ web3.account ? shorten(web3.account) : $t("connectWallet") }}
         </BaseButton>
       </div>
     </BaseContainer>

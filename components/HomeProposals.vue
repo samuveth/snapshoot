@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { PROPOSALS_QUERY } from "@/helpers/queries";
 import { Proposal } from "@/helpers/interfaces";
+import { useMediaQuery } from "@vueuse/core";
 
 const { spaceEns } = useApp();
 const { getRelativeProposalPeriod } = useIntl();
 const { d } = useI18n();
 const { profiles, loadProfiles } = useProfiles();
+const isSmallScreen = useMediaQuery("(max-width: 640px)");
 
 const { result, loading } = useQuery<{
   proposals: Proposal[];
@@ -35,17 +37,18 @@ watch(proposals, () => {
         <table class="w-full">
           <thead>
             <tr class="text-left">
-              <th class="px-4 py-2">Proposal</th>
+              <th class="w-2/3 px-4 py-2">Proposal</th>
               <th class="px-4 py-2">Author</th>
               <th class="px-4 py-2">Votes</th>
             </tr>
           </thead>
           <tbody>
             <tr
-              class="last:border-b- border-b border-gray-light p-3 first:border-t"
+              class="last:border-b- border-b border-gray-light first:border-t"
               v-for="proposal in proposals"
+              @click="$router.push(`/p/${proposal.id}`)"
             >
-              <td class="px-4 py-2">
+              <td class="w-2/3 px-4 py-2">
                 <span class="text-2xl line-clamp-1">
                   {{ proposal.title }}
                 </span>
@@ -60,19 +63,22 @@ watch(proposals, () => {
                         : 'text-gray-medium',
                     ]"
                   />
-                  {{
-                    getRelativeProposalPeriod(
-                      proposal.state,
-                      proposal.start,
-                      proposal.end
-                    )
-                  }}
+                  <span class="text-sm">
+                    {{
+                      getRelativeProposalPeriod(
+                        proposal.state,
+                        proposal.start,
+                        proposal.end
+                      )
+                    }}
+                  </span>
                 </div>
               </td>
               <td class="px-4 py-2">
                 <BaseUser
                   :address="proposal.author"
                   :profile="profiles[proposal.author]"
+                  :hide-username="isSmallScreen"
                 />
               </td>
               <td class="px-4 py-2">100</td>

@@ -9,9 +9,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <TheNavbar />
-  <NuxtPage />
-  <Teleport to="body">
-    <ModalConnect />
-  </Teleport>
+  <div class="text-gray-dark">
+    <TheNavbar />
+    <NuxtPage />
+    <Teleport to="body">
+      <ModalConnect />
+    </Teleport>
+  </div>
 </template>

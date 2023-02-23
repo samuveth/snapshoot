@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="slim ? 'px-0 md:px-4' : 'px-4'" class="mx-auto max-w-screen-lg">
+  <div class="mx-auto max-w-screen-xl px-2 sm:px-6 lg:px-8">
     <slot />
   </div>
 </template>

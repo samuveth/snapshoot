@@ -9,7 +9,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-light text-gray-dark">
+  <div class="min-h-screen bg-light text-dark">
     <TheNavbar />
     <NuxtPage />
     <Teleport to="body">

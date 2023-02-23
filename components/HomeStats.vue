@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Space } from "~~/helpers/interfaces";
-import DocIcon from "~icons/heroicons/document-check";
+import DocIcon from "~icons/heroicons/document";
 import PenIcon from "~icons/heroicons/pencil";
 import UserIcon from "~icons/heroicons/user-plus";
 
@@ -72,10 +72,10 @@ onMounted(async () => {
       <div
         v-for="item in stats"
         :key="item.name"
-        class="relative overflow-hidden rounded-lg border border-gray-light bg-white px-4 pt-6 pb-6 sm:px-6 sm:pt-6"
+        class="relative overflow-hidden rounded-default border border-gray-light bg-white px-4 pt-6 pb-6 sm:px-6 sm:pt-6"
       >
         <dt>
-          <div class="absolute rounded-md bg-secondary p-3">
+          <div class="absolute rounded-default bg-secondary p-3">
             <component
               :is="item.icon"
               class="h-6 w-6 text-white"

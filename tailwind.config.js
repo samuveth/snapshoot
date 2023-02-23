@@ -26,8 +26,6 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
     require("prettier-plugin-tailwindcss"),
-    require("@tailwindcss/forms")({
-      strategy: "class",
-    }),
+    require("@tailwindcss/forms"),
   ],
 };

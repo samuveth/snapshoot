@@ -2,7 +2,6 @@
 import { Space } from "~~/helpers/interfaces";
 import DocIcon from "~icons/heroicons/document";
 import PenIcon from "~icons/heroicons/pencil";
-import UserIcon from "~icons/heroicons/user-plus";
 
 const props = defineProps<{
   space: Space;
@@ -47,12 +46,6 @@ const stats = computed(() => {
       icon: PenIcon,
       change: formatNumber(exploreSpace.value.votes_7d || 0),
     },
-    {
-      name: "Total Follower",
-      stat: formatNumber(exploreSpace.value.followers || 0),
-      icon: UserIcon,
-      change: formatNumber(exploreSpace.value.followers_7d || 0),
-    },
   ];
 });
 
@@ -66,9 +59,7 @@ onMounted(async () => {
 
 <template>
   <div class="mb-4">
-    <dl
-      class="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3"
-    >
+    <dl class="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4">
       <div
         v-for="item in stats"
         :key="item.name"
